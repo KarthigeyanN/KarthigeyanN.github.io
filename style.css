@@ -26,7 +26,7 @@ body {
   font-family: var(--font-sans);
   background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -647,3 +647,4 @@ footer {
     align-items: flex-start;
   }
 }
+
