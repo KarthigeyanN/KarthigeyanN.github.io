@@ -1,0 +1,14 @@
+- name: "Portfolio Website"
+  desc: "Personal portfolio built with Jekyll, featuring dark/light theme, particle animations, and responsive design."
+  demo: "https://kaarthi.github.io"
+  repo: "https://github.com/kaarthi/PersonalWebsite"
+
+- name: "ML Model Explorer"
+  desc: "Interactive visualization tool for exploring machine learning model performance metrics and training curves."
+  demo: "#"
+  repo: "#"
+
+- name: "CLI Productivity Toolkit"
+  desc: "A collection of command-line utilities for developers, automating common workflows and improving productivity."
+  demo: "#"
+  repo: "#"

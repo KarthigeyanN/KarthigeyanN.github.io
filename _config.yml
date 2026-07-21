@@ -1,0 +1,23 @@
+title: "Karthi"
+description: "Engineer • Developer • Scientific Thinker"
+baseurl: ""
+url: "https://kaarthi.github.io"
+
+markdown: kramdown
+theme: null
+
+collections:
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
