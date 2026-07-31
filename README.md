@@ -74,7 +74,8 @@ PersonalWebsite/
 │   └── images/
 │
 ├── _data/
-│   └── featured.yml           # Featured projects data
+│   ├── featured.yml           # Legacy (unused)
+│   └── projects.yml           # Projects data
 │
 ├── _includes/
 │   ├── footer.html            # Footer component (Jekyll)
@@ -107,7 +108,7 @@ Edit `assets/css/theme.css` to customize the color palette:
 
 ### Content
 
-- **Projects** — Edit `_data/featured.yml` to add/remove projects
+- **Projects** — Edit `_data/projects.yml` to add/remove projects
 - **About** — Edit `about/index.html`
 - **Blog Posts** — Add `.md` files to `blog/_posts/`
 - **Social Links** — Edit the footer in each `index.html` or `_includes/footer.html`

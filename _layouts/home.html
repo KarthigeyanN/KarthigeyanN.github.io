@@ -21,13 +21,22 @@ layout: default
   </div>
 
   <div class="grid">
-    {% for project in site.data.featured %}
+    {% for project in site.data.projects %}
     <div class="card">
       <h3>{{ project.name }}</h3>
-      <p>{{ project.desc }}</p>
+      <p>{{ project.description }}</p>
+      <div class="card-tags">
+        {% for tool in project.tools %}
+        <span class="tag">{{ tool }}</span>
+        {% endfor %}
+      </div>
       <div class="card-links">
-        <a href="{{ project.demo }}" class="btn btn-sm">Live Demo &rarr;</a>
-        <a href="{{ project.repo }}" class="btn btn-sm btn-outline">Source Code</a>
+        {% if project.demo_url and project.demo_url != "#" %}
+        <a href="{{ project.demo_url }}" class="btn btn-sm">Live Demo &rarr;</a>
+        {% endif %}
+        {% if project.source_url and project.source_url != "#" %}
+        <a href="{{ project.source_url }}" class="btn btn-sm btn-outline">Source Code</a>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
