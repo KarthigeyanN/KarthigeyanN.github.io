@@ -1,0 +1,20 @@
+# Jekyll build output
+_site/
+projects/_site/
+
+# Theme archive (source files are already in the repo)
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
