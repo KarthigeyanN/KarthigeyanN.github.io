@@ -1,26 +1,35 @@
-- name: "Portfolio Website"
-  description: "Personal portfolio built with Jekyll, featuring dark/light theme, particle animations, and responsive design."
-  tools:
-    - Jekyll
-    - HTML/CSS
-    - JavaScript
-  demo_url: "project-demo/"
-  source_url: "https://github.com/kaarthi/PersonalWebsite"
-
 - name: "ML Model Explorer"
-  description: "Interactive visualization tool for exploring machine learning model performance metrics and training curves."
+  description: "ML Model Explorer - Solubility Prediction using Machine Learning techniques."
   tools:
-    - Python
-    - TensorFlow
-    - HTML/CSS
-  demo_url: "#"
-  source_url: "#"
+    - RDKit
+    - ML models
+    - JavaScript & Python
+  demo_url: "project-demo/ML-SolubilityPredictor/"
+  source_url: "https://github.com/KarthigeyanN/ML-modex"
 
-- name: "CLI Productivity Toolkit"
-  description: "A collection of command-line utilities for developers, automating common workflows and improving productivity."
+- name: "3D Molecular Viewer"
+  description: "Interactive 3D visualization tool for exploring molecular structures ."
   tools:
     - Python
-    - Bash
-    - Go
+    - Node.js
+    - Three.js
+  demo_url: "project-demo/molViewer/"
+  source_url: "https://github.com/KarthigeyanN/molViewer"
+
+- name: "fpocket-rewritten"
+  description: "A modern C++ rewrite of the fpocket2 protein pocket detection program."
+  tools:
+    - C++
+    - CGAL/Boost library
+    - CMake
   demo_url: "#"
-  source_url: "#"
+  source_url: "https://github.com/KarthigeyanN/fpocket-rewritten"
+
+  - name: "synthecomb"
+  description: "Combinatorial library generation and analysis tool for drug discovery."
+  tools:
+    - Python
+    - RDKit
+    - flask
+  demo_url: "#"
+  source_url: "https://github.com/KarthigeyanN/synthecomb"
