@@ -9,8 +9,7 @@ title: "About"
   <div class="about-text">
     <p>
       I'm Karthi — an engineer, developer, and scientific thinker based in the United States.
-      I build software that sits at the intersection of elegant engineering and rigorous
-      scientific thinking.
+      I build software that sits at the intersection of elegant engineering and rigorous scientific thinking.
     </p>
 
     <p>
@@ -39,6 +38,6 @@ title: "About"
     <span class="skill-tag">Go</span>
     <span class="skill-tag">Rust</span>
     <span class="skill-tag">System Design</span>
-    <span class="skill-tag">DevOps</span>
+    <span class="skill-tag">Computational Drug discovery</span>
   </div>
 </div>

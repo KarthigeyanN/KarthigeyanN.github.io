@@ -1,0 +1,22 @@
+/* Project-specific styles */
+/* Add your custom CSS here */
+
+.project-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.demo {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+#demoCanvas {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+}

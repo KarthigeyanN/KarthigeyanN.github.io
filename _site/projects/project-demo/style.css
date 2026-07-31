@@ -1,0 +1,4 @@
+#demoCanvas {
+  background: var(--card-bg);
+  border: 1px solid var(--grid);
+}
