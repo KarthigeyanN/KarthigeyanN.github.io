@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle Simulation Demo | Karthi</title>
+  <meta name="description" content="A multi-particle simulation with periodic boundary conditions.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/science.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Particles Background -->
+  <canvas id="particles"></canvas>
+  <!-- Navigation -->
+  <div id="header"></div>
+
+  <main>
+    <div class="project-page">
+      <h1>Particle Simulation Demo</h1>
+      <p>A multi-particle system with periodic boundary conditions.</p>
+
+      <div class="controls">
+        <label for="particleCount">Particles:</label>
+        <input type="number" id="particleCount" value="100" min="1" max="500">
+        <label class="trail-toggle">
+          <input type="checkbox" id="showTrails" checked>
+          Trails
+        </label>
+        <button id="resetBtn" class="btn btn-primary">Reset</button>
+      </div>
+
+      <div class="demo">
+        <canvas id="demoCanvas"></canvas>
+      </div>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script>
+    fetch('/_includes/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // Load theme script after header is injected so toggle button exists
+        const themeScript = document.createElement('script');
+        themeScript.src = 'assets/js/theme.js';
+        document.body.appendChild(themeScript);
+      });
+
+    fetch('/_includes/footer.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+
+
+  <script src="../../assets/js/theme.js"></script>
+  <script src="../../assets/js/particles.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

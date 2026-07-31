@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BioVisualizer Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/science.css">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background-color: #0a0a0a; font-family: 'Inter', sans-serif; overflow: hidden; }
+        #header { position: relative; z-index: 20; }
+        .main-content { position: relative; width: 100vw; height: calc(100vh - 56px); }
+        #viewport { width: 100%; height: 100%; }
+        #ui-panel { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 15px; border-radius: 8px; color: #fff; z-index: 10; width: 240px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        label { display: flex; align-items: center; gap: 8px; margin: 10px 0; cursor: pointer; font-size: 13px; user-select: none; }
+        input[type="checkbox"] { cursor: pointer; }
+        hr { border: 0; border-top: 1px solid #444; margin: 15px 0; }
+        .pdb-input-row { display: flex; gap: 6px; margin-bottom: 8px; }
+        .pdb-input-row input { flex: 1; padding: 6px 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: #fff; font-size: 13px; text-transform: uppercase; }
+        .pdb-input-row input::placeholder { color: #888; }
+        .pdb-input-row button { padding: 6px 12px; border-radius: 4px; border: none; background: #2864a8; color: #fff; cursor: pointer; font-weight: bold; font-size: 13px; }
+        .pdb-input-row button:hover { background: #3a7bc8; }
+        .pdb-input-row button:disabled { background: #444; cursor: not-allowed; }
+        #status-msg { font-size: 11px; color: #aaa; margin-top: 4px; min-height: 16px; }
+        #status-msg.error { color: #f66; }
+        #status-msg.success { color: #6f6; }
+        .viewer-window { position: relative; width: 100%; height: 100%; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div id="header"></div>
+
+  <div class="main-content">
+    <div id="ui-panel">
+        <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 16px;">PyMOL-Lite Viewer</h3>
+        
+        <div class="pdb-input-row">
+            <input type="text" id="pdb-id-input" placeholder="PDB ID (e.g. 1A8M)" maxlength="4">
+            <button id="load-pdb-btn">Load</button>
+        </div>
+        <div id="status-msg"></div>
+
+        <hr>
+
+        <label style="background: #a22; padding: 8px; border-radius: 4px; display: block; text-align: center; cursor: pointer; font-weight: bold;">
+            📁 Choose .pdb File
+            <input type="file" id="upload-pdb" accept=".pdb" style="display: none;">
+        </label>
+        
+        <hr>
+
+        <label>
+            <input type="checkbox" id="check-atoms"> Show Atoms
+        </label>
+        
+        <label>
+            <input type="checkbox" id="check-bonds" checked> Show Bonds
+        </label>
+
+        <label id="hydro-label" style="opacity: 0.5;">
+            <input type="checkbox" id="check-hydrogens" checked disabled> Show Hydrogens
+        </label>
+
+        <hr>
+
+        <label>
+            <input type="checkbox" id="toggle-ss" checked> Enable Secondary Structure
+        </label>
+    </div>
+    <div class="viewer-window">
+      <div id="viewport"></div>
+    </div>
+  </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const ELEMENT_COLORS = {
+            'C': 0x909090, 'O': 0xFF0D0D, 'N': 0x3050F8, 
+            'S': 0xFFFF30, 'H': 0xFFFFFF, 'P': 0xFFA500, 'DEFAULT': 0x1FF1F
+        };
+
+        class MolecularVisualizer {
+            constructor(containerElement) {
+                this.container = containerElement;
+                this.showSecondary = true;
+
+                this.initScene();
+                this.initLights();
+                this.animate();
+
+                window.addEventListener('resize', () => this.onWindowResize());
+            }
+
+            initScene() {
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x0a0a0a); 
+
+                this.camera = new THREE.PerspectiveCamera(45, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
+                this.camera.position.z = 80;
+
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                this.container.appendChild(this.renderer.domElement);
+
+                this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+                this.controls.enableDamping = true;
+                this.controls.dampingFactor = 0.05;
+
+                this.atomGroup = new THREE.Group();
+                this.bondGroup = new THREE.Group();
+                this.backboneGroup = new THREE.Group();
+                
+                this.scene.add(this.atomGroup);
+                this.scene.add(this.bondGroup);
+                this.scene.add(this.backboneGroup);
+            }
+
+            initLights() {
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                this.scene.add(ambientLight);
+
+                const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.7);
+                dirLight1.position.set(1, 1, 1).normalize();
+                this.scene.add(dirLight1);
+
+                const dirLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
+                dirLight2.position.set(-1, -1, -1).normalize();
+                this.scene.add(dirLight2);
+            }
+
+            parsePDB(pdbText) {
+                const lines = pdbText.split('\n');
+                const atoms = [];
+                const helices = [];
+                const sheets = [];
+
+                lines.forEach(line => {
+                    if (line.startsWith('ATOM  ') || line.startsWith('HETATM')) {
+                        const atomId = parseInt(line.substring(6, 11).trim(), 10);
+                        const atomName = line.substring(12, 16).trim();
+                        const element = line.substring(76, 78).trim() || atomName[0];
+                        const resName = line.substring(17, 20).trim();
+                        const chainId = line.substring(21, 22).trim();
+                        const resSeq = parseInt(line.substring(22, 26).trim(), 10);
+                        const x = parseFloat(line.substring(30, 38).trim());
+                        const y = parseFloat(line.substring(38, 46).trim());
+                        const z = parseFloat(line.substring(46, 54).trim());
+
+                        atoms.push({ atomId, atomName, element, resName, chainId, resSeq, pos: new THREE.Vector3(x, y, z) });
+                    } else if (line.startsWith('HELIX ')) {
+                        const startRes = parseInt(line.substring(21, 25).trim(), 10);
+                        const endRes = parseInt(line.substring(33, 37).trim(), 10);
+                        helices.push({ start: startRes, end: endRes });
+                    } else if (line.startsWith('SHEET ')) {
+                        const startRes = parseInt(line.substring(22, 26).trim(), 10);
+                        const endRes = parseInt(line.substring(33, 37).trim(), 10);
+                        sheets.push({ start: startRes, end: endRes });
+                    }
+                });
+
+                return { atoms, helices, sheets };
+            }
+
+            loadPDB(pdbText) {
+                while(this.atomGroup.children.length) this.atomGroup.remove(this.atomGroup.children[0]);
+                while(this.bondGroup.children.length) this.bondGroup.remove(this.bondGroup.children[0]);
+                while(this.backboneGroup.children.length) this.backboneGroup.remove(this.backboneGroup.children[0]);
+
+                this.heavyAtomsList = [];
+                this.hydrogenAtomsList = [];
+
+                const data = this.parsePDB(pdbText);
+                if (data.atoms.length === 0) return;
+
+                const center = new THREE.Vector3();
+                data.atoms.forEach(a => center.add(a.pos));
+                center.divideScalar(data.atoms.length);
+                data.atoms.forEach(a => a.pos.sub(center));
+
+                data.atoms.forEach(a => {
+                    if (a.element === 'H') this.hydrogenAtomsList.push(a);
+                    else this.heavyAtomsList.push(a);
+                });
+
+                this.buildAtomMesh();
+                this.buildBondMesh(data.atoms);
+                this.buildBackboneMesh(data.atoms, data.helices, data.sheets);
+
+                this.controls.target.set(0,0,0);
+                this.controls.update();
+            }
+
+            buildAtomMesh() {
+                const sphereGeo = new THREE.SphereGeometry(0.35, 16, 16);
+                const material = new THREE.MeshPhongMaterial({ shininess: 30 });
+                const dummy = new THREE.Object3D();
+                const color = new THREE.Color();
+
+                this.heavyAtomMesh = new THREE.InstancedMesh(sphereGeo, material, this.heavyAtomsList.length);
+                this.heavyAtomsList.forEach((atom, i) => {
+                    dummy.position.copy(atom.pos);
+                    dummy.updateMatrix();
+                    this.heavyAtomMesh.setMatrixAt(i, dummy.matrix);
+                    color.setHex(ELEMENT_COLORS[atom.element] || ELEMENT_COLORS['DEFAULT']);
+                    this.heavyAtomMesh.setColorAt(i, color);
+                });
+                this.heavyAtomMesh.instanceMatrix.needsUpdate = true;
+                if (this.heavyAtomMesh.instanceColor) this.heavyAtomMesh.instanceColor.needsUpdate = true;
+                this.atomGroup.add(this.heavyAtomMesh);
+
+                this.hydrogenAtomMesh = new THREE.InstancedMesh(sphereGeo, material, Math.max(1, this.hydrogenAtomsList.length));
+                this.hydrogenAtomsList.forEach((atom, i) => {
+                    dummy.position.copy(atom.pos);
+                    dummy.updateMatrix();
+                    this.hydrogenAtomMesh.setMatrixAt(i, dummy.matrix);
+                    color.setHex(ELEMENT_COLORS['H']);
+                    this.hydrogenAtomMesh.setColorAt(i, color);
+                });
+                this.hydrogenAtomMesh.instanceMatrix.needsUpdate = true;
+                if (this.hydrogenAtomMesh.instanceColor) this.hydrogenAtomMesh.instanceColor.needsUpdate = true;
+                this.atomGroup.add(this.hydrogenAtomMesh);
+            }
+
+            buildBondMesh(allAtoms) {
+                const heavyBonds = [];
+                const hydrogenBonds = [];
+                const maxBondDistSq = 1.9 * 1.9;
+
+                for (let i = 0; i < allAtoms.length; i++) {
+                    for (let j = i + 1; j < allAtoms.length; j++) {
+                        const a = allAtoms[i];
+                        const b = allAtoms[j];
+                        
+                        if (a.element === 'H' && b.element === 'H') continue;
+
+                        const closeResidues = Math.abs(a.resSeq - b.resSeq) <= 1;
+                        if (closeResidues && a.pos.distanceToSquared(b.pos) < maxBondDistSq) {
+                            if (a.element === 'H' || b.element === 'H') {
+                                hydrogenBonds.push({ from: a, to: b });
+                            } else {
+                                heavyBonds.push({ from: a, to: b });
+                            }
+                        }
+                    }
+                }
+
+                const cylGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.5, 8);
+                cylGeo.translate(0, 0.25, 0); 
+                cylGeo.rotateX(Math.PI / 2);  
+                const bondMaterial = new THREE.MeshPhongMaterial({ shininess: 40 });
+
+                const createBondInstance = (bondArray) => {
+                    const mesh = new THREE.InstancedMesh(cylGeo, bondMaterial, Math.max(1, bondArray.length * 2));
+                    const dummy = new THREE.Object3D();
+                    const color = new THREE.Color();
+                    let idx = 0;
+
+                    bondArray.forEach(bond => {
+                        const pA = bond.from.pos;
+                        const pB = bond.to.pos;
+                        const midPoint = new THREE.Vector3().addVectors(pA, pB).multiplyScalar(0.5);
+
+                        dummy.position.copy(pA);
+                        dummy.lookAt(midPoint);
+                        dummy.scale.set(1, 1, pA.distanceTo(midPoint) * 2);
+                        dummy.updateMatrix();
+                        mesh.setMatrixAt(idx, dummy.matrix);
+                        color.setHex(ELEMENT_COLORS[bond.from.element] || ELEMENT_COLORS['DEFAULT']);
+                        mesh.setColorAt(idx++, color);
+
+                        dummy.position.copy(pB);
+                        dummy.lookAt(midPoint);
+                        dummy.scale.set(1, 1, pB.distanceTo(midPoint) * 2);
+                        dummy.updateMatrix();
+                        mesh.setMatrixAt(idx, dummy.matrix);
+                        color.setHex(ELEMENT_COLORS[bond.to.element] || ELEMENT_COLORS['DEFAULT']);
+                        mesh.setColorAt(idx++, color);
+                    });
+
+                    mesh.instanceMatrix.needsUpdate = true;
+                    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+                    return mesh;
+                };
+
+                this.heavyBondMesh = createBondInstance(heavyBonds);
+                this.hydrogenBondMesh = createBondInstance(hydrogenBonds);
+
+                this.bondGroup.add(this.heavyBondMesh);
+                this.bondGroup.add(this.hydrogenBondMesh);
+            }
+
+            buildBackboneMesh(atoms, helices, sheets) {
+                const alphaCarbons = atoms.filter(a => a.atomName === 'CA');
+                if (alphaCarbons.length < 4) return;
+
+                const points = alphaCarbons.map(a => a.pos);
+
+                const loopShape = new THREE.Shape();
+                loopShape.absarc(0, 0, 0.2, 0, Math.PI * 2, false);
+
+                const helixShape = new THREE.Shape();
+                helixShape.absellipse(0, 0, 0.7, 0.4, 0, Math.PI * 2, false);
+
+                const sheetShape = new THREE.Shape();
+                sheetShape.moveTo(-0.9, -0.1);
+                sheetShape.lineTo(0.9, -0.1);
+                sheetShape.lineTo(0.9, 0.1);
+                sheetShape.lineTo(-0.9, 0.1);
+
+                let currentSegments = [];
+                let currentType = null;
+
+                const getResidueType = (resSeq) => {
+                    if (!this.showSecondary) return 'loop';
+                    if (helices.some(h => resSeq >= h.start && resSeq <= h.end)) return 'helix';
+                    if (sheets.some(s => resSeq >= s.start && resSeq <= s.end)) return 'sheet';
+                    return 'loop';
+                };
+
+                const renderSegmentGroup = (pts, type) => {
+                    if (pts.length < 2) return;
+
+                    const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
+                    let targetShape = loopShape;
+                    let matColor = 0x3333ff; 
+
+                    if (type === 'helix') {
+                        targetShape = helixShape;
+                        matColor = 0xff0000;
+                    } else if (type === 'sheet') {
+                        targetShape = sheetShape;
+                        matColor = 0xffff00;
+                    }
+
+                    const extrudeSettings = {
+                        steps: pts.length * 15, 
+                        curveSegments: 16,     
+                        extrudePath: curve,
+                        frames: true       
+                    };
+
+                    const geometry = new THREE.ExtrudeGeometry(targetShape, extrudeSettings);
+                    const material = new THREE.MeshStandardMaterial({ 
+                        color: matColor, roughness: 0.4, metalness: 0.1, side: THREE.DoubleSide
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    this.backboneGroup.add(mesh);
+                };
+
+                for (let i = 0; i < alphaCarbons.length; i++) {
+                    const type = getResidueType(alphaCarbons[i].resSeq);
+                    if (currentType === null) currentType = type;
+
+                    if (type !== currentType) {
+                        currentSegments.push(alphaCarbons[i].pos);
+                        renderSegmentGroup(currentSegments, currentType);
+                        currentSegments = [alphaCarbons[i].pos];
+                        currentType = type;
+                    } else {
+                        currentSegments.push(alphaCarbons[i].pos);
+                    }
+                }
+                
+                renderSegmentGroup(currentSegments, currentType);
+                this.backboneGroup.visible = true;
+            }
+
+            updateDisplaySettings(showAtoms, showBonds, showHydrogens) {
+                if (this.heavyAtomMesh) {
+                    this.heavyAtomMesh.visible = showAtoms;
+                    this.hydrogenAtomMesh.visible = showAtoms && showHydrogens;
+                }
+                if (this.heavyBondMesh) {
+                    this.heavyBondMesh.visible = showBonds;
+                    this.hydrogenBondMesh.visible = showBonds && showHydrogens;
+                }
+            }
+
+            onWindowResize() {
+                this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+            }
+
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                this.controls.update();
+                this.renderer.render(this.scene, this.camera);
+            }
+        }
+
+        // --- Application Code ---
+        const viewport = document.getElementById('viewport');
+        const visualizer = new MolecularVisualizer(viewport);
+
+        let currentPDBText = '';
+        let isLoading = false;
+
+        const statusMsg = document.getElementById('status-msg');
+        const pdbInput = document.getElementById('pdb-id-input');
+        const loadBtn = document.getElementById('load-pdb-btn');
+
+        function setStatus(msg, type) {
+            statusMsg.textContent = msg;
+            statusMsg.className = type || '';
+        }
+
+        async function loadPDBFromRCSB(pdbId) {
+            const id = pdbId.trim().toUpperCase();
+            if (!id || id.length < 4) {
+                setStatus('Please enter a valid 4-character PDB ID', 'error');
+                return;
+            }
+
+            isLoading = true;
+            loadBtn.disabled = true;
+            loadBtn.textContent = 'Loading...';
+            setStatus(`Downloading ${id} from RCSB...`, '');
+
+            try {
+                const url = `https://files.rcsb.org/download/${id}.pdb`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: PDB ID "${id}" not found`);
+                }
+
+                const text = await response.text();
+                if (!text || text.length < 100) {
+                    throw new Error('Downloaded file appears to be empty or invalid');
+                }
+
+                currentPDBText = text;
+                visualizer.loadPDB(currentPDBText);
+                updateUIState();
+                setStatus(`Loaded ${id} (${(text.length / 1024).toFixed(0)} KB)`, 'success');
+            } catch (err) {
+                setStatus(`Error: ${err.message}`, 'error');
+                console.error('PDB load error:', err);
+            } finally {
+                isLoading = false;
+                loadBtn.disabled = false;
+                loadBtn.textContent = 'Load';
+            }
+        }
+
+        // Load PDB button click
+        loadBtn.addEventListener('click', () => {
+            loadPDBFromRCSB(pdbInput.value);
+        });
+
+        // Enter key in input field
+        pdbInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                loadPDBFromRCSB(pdbInput.value);
+            }
+        });
+
+        // File upload
+        document.getElementById('upload-pdb').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                currentPDBText = evt.target.result;
+                visualizer.loadPDB(currentPDBText);
+                updateUIState();
+                setStatus(`Loaded file: ${file.name}`, 'success');
+            };
+            reader.readAsText(file);
+        });
+
+        function updateUIState() {
+            const atomsOn = document.getElementById('check-atoms').checked;
+            const bondsOn = document.getElementById('check-bonds').checked;
+            const hydroOn = document.getElementById('check-hydrogens').checked;
+
+            const hydroCheckbox = document.getElementById('check-hydrogens');
+            const hydroLabel = document.getElementById('hydro-label');
+
+            if (atomsOn || bondsOn) {
+                hydroCheckbox.disabled = false;
+                hydroLabel.style.opacity = "1.0";
+            } else {
+                hydroCheckbox.disabled = true;
+                hydroLabel.style.opacity = "0.5";
+            }
+
+            visualizer.updateDisplaySettings(atomsOn, bondsOn, hydroOn);
+        }
+
+        document.getElementById('check-atoms').addEventListener('change', updateUIState);
+        document.getElementById('check-bonds').addEventListener('change', updateUIState);
+        document.getElementById('check-hydrogens').addEventListener('change', updateUIState);
+
+        document.getElementById('toggle-ss').addEventListener('change', (e) => {
+            visualizer.showSecondary = e.target.checked;
+            if (currentPDBText) {
+                visualizer.loadPDB(currentPDBText); 
+            }
+            updateUIState();
+        });
+
+        // Load default PDB on startup
+        pdbInput.value = '1A8M';
+        loadPDBFromRCSB('1A8M');
+        updateUIState();
+    </script>
+    <script>
+    fetch('../../_includes/header.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // Load theme script after header is injected so toggle button exists
+        const themeScript = document.createElement('script');
+        themeScript.src = '../../assets/js/theme.js';
+        document.body.appendChild(themeScript);
+        });
+    </script> 
+</body>
+</html>

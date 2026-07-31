@@ -1,0 +1,43 @@
+#demoCanvas {
+  background: var(--card-bg);
+  border: 1px solid var(--grid);
+  display: block;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.controls input[type="number"] {
+  width: 80px;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.trail-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.trail-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}

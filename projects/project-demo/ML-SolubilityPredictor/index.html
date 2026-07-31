@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Solubility Explorer - Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🧪 ML Solubility Predictor</h1>
+            <p class="subtitle">Predict aqueous solubility (logS) for chemical compounds using pre-trained ML models from the ESOL dataset (1,128 compounds, 45 RDKit descriptors)</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Model Info Panel -->
+        <section id="model-info">
+            <div class="card">
+                <h2>📊 Pre-trained Models</h2>
+                <p>Trained on the <strong>Delaney ESOL dataset</strong> (1,128 compounds) using <strong>45 RDKit 2D molecular descriptors</strong>.</p>
+                <div id="model-badges"></div>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section id="input-section">
+            <div class="card">
+                <h2>📝 Input Compounds</h2>
+                <div class="input-tabs">
+                    <button class="tab-btn active" onclick="switchTab('paste')" id="tab-paste">✏️ Paste SMILES</button>
+                    <button class="tab-btn" onclick="switchTab('upload')" id="tab-upload">📁 Upload CSV</button>
+                    <button class="tab-btn" onclick="switchTab('example')" id="tab-example">🔬 Example Data</button>
+                </div>
+
+                <!-- Paste Tab -->
+                <div id="input-paste" class="tab-content active">
+                    <p>Paste SMILES and optional measured solubility values (tab or comma separated):</p>
+                    <textarea id="smiles-input" rows="10" placeholder="SMILES&#10;CCO&#10;CC(=O)O&#10;C1=CC=CC=C1&#10;CC(C)C1=CC=C(C=C1)C(C)C(=O)O&#10;CN1C=NC2=C1C(=O)N(C(=O)N2C)C">SMILES	measured_log_solubility
+CCO	0.70
+CC(=O)O	0.50
+C1=CC=CC=C1	-2.08
+CC(C)C1=CC=C(C=C1)C(C)C(=O)O	-3.38
+CN1C=NC2=C1C(=O)N(C(=O)N2C)C	-1.10</textarea>
+                </div>
+
+                <!-- Upload Tab -->
+                <div id="input-upload" class="tab-content">
+                    <p>Upload a CSV file with SMILES and optional measured_log_solubility columns:</p>
+                    <div class="upload-area" id="upload-area">
+                        <p>📂 Drag & drop or click to upload CSV</p>
+                        <input type="file" id="file-input" accept=".csv" hidden>
+                    </div>
+                    <div id="file-info" class="hidden"></div>
+                </div>
+
+                <!-- Example Tab -->
+                <div id="input-example" class="tab-content">
+                    <p>Run prediction on the example compounds from the ESOL dataset:</p>
+                    <button class="btn btn-secondary" onclick="loadExampleData()">Load 17 Example Compounds</button>
+                    <div id="example-info" class="hidden"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="runPrediction()">🔮 Predict Solubility</button>
+                    <button class="btn btn-secondary" onclick="clearResults()">🗑️ Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="hidden">
+            <!-- Summary -->
+            <div class="card">
+                <h2>📈 Prediction Results</h2>
+                <div id="results-summary"></div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="card">
+                <h2>📋 Compound Predictions</h2>
+                <div class="table-container">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>SMILES</th>
+                                <th>Measured logS</th>
+                                <th>Linear Reg.</th>
+                                <th>Ridge</th>
+                                <th>Random Forest</th>
+                                <th>Gradient Boost</th>
+                                <th>Extra Trees</th>
+                                <th>Ensemble Avg</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="card">
+                <h2>📊 Model Performance Comparison</h2>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <canvas id="chart-predicted-vs-actual"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart-feature-importance"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Analysis -->
+            <div class="card">
+                <h2>📉 Error Analysis</h2>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <canvas id="chart-errors"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart-metrics"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Descriptors Panel -->
+        <section id="features-section" class="hidden">
+            <div class="card">
+                <h2>🔬 Molecular Descriptors</h2>
+                <p>RDKit-computed 2D descriptors for each molecule:</p>
+                <div class="table-container">
+                    <table id="features-table">
+                        <thead id="features-thead"></thead>
+                        <tbody id="features-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="hidden">
+            <div class="spinner"></div>
+            <p id="loading-text">Computing molecular features...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>ML Solubility Explorer - Powered by RDKit descriptors, scikit-learn, and Chart.js</p>
+    </footer>
+
+    <script src="js/model_data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

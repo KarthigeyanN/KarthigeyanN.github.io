@@ -1,0 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Model Badges */
+.model-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.model-badge {
+    background: #f0f4ff;
+    border: 1px solid #d0d8f0;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.model-badge .r2 {
+    background: #667eea;
+    color: white;
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.model-badge .name {
+    font-weight: 600;
+    color: #444;
+}
+
+/* Input Tabs */
+.input-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.tab-btn.active {
+    border-color: #667eea;
+    background: #667eea;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Textarea */
+#smiles-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.85rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+#smiles-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #fafafa;
+}
+
+.upload-area:hover, .upload-area.dragover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.upload-area p {
+    font-size: 1.1rem;
+    color: #888;
+}
+
+/* Buttons */
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #555;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+/* Table */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+th, td {
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
+}
+
+th {
+    background: #f8f9ff;
+    font-weight: 600;
+    color: #555;
+    position: sticky;
+    top: 0;
+}
+
+tr:hover {
+    background: #f8f9ff;
+}
+
+tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.predicted {
+    font-weight: 600;
+}
+
+.predicted.ensemble {
+    color: #667eea;
+}
+
+.predicted.good {
+    color: #27ae60;
+}
+
+.predicted.poor {
+    color: #e74c3c;
+}
+
+/* Charts */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-container {
+    position: relative;
+    height: 350px;
+}
+
+/* Hidden */
+.hidden {
+    display: none !important;
+}
+
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 5px solid #f0f0f0;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Summary Stats */
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
+    display: block;
+}
+
+.stat-card .label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Error styling */
+.error-message {
+    background: #fff0f0;
+    border: 1px solid #ffcccc;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #cc3333;
+    margin: 1rem 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+/* File info */
+#file-info, #example-info {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #f0f8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #27ae60;
+}
