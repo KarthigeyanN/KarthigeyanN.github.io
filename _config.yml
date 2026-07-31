@@ -9,13 +9,6 @@ theme: null
 collections:
   posts:
     output: true
-  projects:
-    output: true
-    source: projects
-    permalink: /projects/:path/
-
-exclude:
-  - projects/_template
 
 defaults:
   - scope:
@@ -28,8 +21,3 @@ defaults:
       type: "pages"
     values:
       layout: "default"
-  - scope:
-      path: ""
-      type: "projects"
-    values:
-      layout: "projects"

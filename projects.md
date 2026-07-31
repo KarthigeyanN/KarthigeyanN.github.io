@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Projects"
+permalink: /projects/
 ---
 
 <div class="featured">
@@ -10,22 +11,20 @@ title: "Projects"
   </div>
 
   <div class="grid">
-    {% for project in site.projects %}
+    {% for project in site.data.projects %}
     <div class="card">
-      <h3>{{ project.title }}</h3>
+      <h3>{{ project.name }}</h3>
       <p>{{ project.description }}</p>
       <div class="card-tags">
-        {% if project.tags %}
-          {% for tag in project.tags %}
-          <span class="tag">{{ tag }}</span>
-          {% endfor %}
-        {% endif %}
+        {% for tool in project.tools %}
+        <span class="tag">{{ tool }}</span>
+        {% endfor %}
       </div>
       <div class="card-links">
-        {% if project.demo_url %}
-        <a href="{{ project.demo_url | relative_url }}" class="btn btn-sm">Live Demo &rarr;</a>
+        {% if project.demo_url and project.demo_url != "#" %}
+        <a href="{{ project.demo_url }}" class="btn btn-sm">Live Demo &rarr;</a>
         {% endif %}
-        {% if project.source_url %}
+        {% if project.source_url and project.source_url != "#" %}
         <a href="{{ project.source_url }}" class="btn btn-sm btn-outline">Source Code</a>
         {% endif %}
       </div>

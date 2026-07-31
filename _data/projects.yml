@@ -1,0 +1,26 @@
+- name: "Portfolio Website"
+  description: "Personal portfolio built with Jekyll, featuring dark/light theme, particle animations, and responsive design."
+  tools:
+    - Jekyll
+    - HTML/CSS
+    - JavaScript
+  demo_url: "https://kaarthi.github.io"
+  source_url: "https://github.com/kaarthi/PersonalWebsite"
+
+- name: "ML Model Explorer"
+  description: "Interactive visualization tool for exploring machine learning model performance metrics and training curves."
+  tools:
+    - Python
+    - TensorFlow
+    - D3.js
+  demo_url: "#"
+  source_url: "#"
+
+- name: "CLI Productivity Toolkit"
+  description: "A collection of command-line utilities for developers, automating common workflows and improving productivity."
+  tools:
+    - Python
+    - Bash
+    - Go
+  demo_url: "#"
+  source_url: "#"
