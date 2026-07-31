@@ -86,7 +86,7 @@ PersonalWebsite/
 └── _layouts/
     ├── default.html           # Base layout (Jekyll)
     ├── home.html              # Home page layout (Jekyll)
-    ├── posts.html             # Blog post layout (Jekyll)
+    ├── post.html              # Blog post layout (Jekyll)
     └── projects.html          # Project page layout (Jekyll)
 ```
 
