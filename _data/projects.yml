@@ -4,7 +4,7 @@
     - Jekyll
     - HTML/CSS
     - JavaScript
-  demo_url: "https://kaarthi.github.io"
+  demo_url: "projects/project-demo/"
   source_url: "https://github.com/kaarthi/PersonalWebsite"
 
 - name: "ML Model Explorer"
