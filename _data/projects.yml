@@ -12,7 +12,6 @@
   tools:
     - Python
     - TensorFlow
-    - D3.js
     - HTML/CSS
   demo_url: "#"
   source_url: "#"
