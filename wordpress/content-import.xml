@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/"
+>
+
+<channel>
+	<title>Karthi</title>
+	<link>https://karthigeyann.github.io</link>
+	<description>Engineer • Developer • Scientific Thinker</description>
+	<pubDate>Thu, 30 Jul 2026 10:00:00 +0000</pubDate>
+	<language>en-US</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>https://karthigeyann.github.io</wp:base_site_url>
+	<wp:base_blog_url>https://karthigeyann.github.io</wp:base_blog_url>
+
+	<wp:author>
+		<wp:author_id>1</wp:author_id>
+		<wp:author_login><![CDATA[karthi]]></wp:author_login>
+		<wp:author_email><![CDATA[karthi02@gmail.com]]></wp:author_email>
+		<wp:author_display_name><![CDATA[Karthi]]></wp:author_display_name>
+		<wp:author_first_name><![CDATA[Karthi]]></wp:author_first_name>
+		<wp:author_last_name><![CDATA[]]></wp:author_last_name>
+	</wp:author>
+
+	<wp:category>
+		<wp:term_id>1</wp:term_id>
+		<wp:category_nicename><![CDATA[uncategorized]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Uncategorized]]></wp:cat_name>
+	</wp:category>
+
+	<wp:term>
+		<wp:term_id>2</wp:term_id>
+		<wp:term_taxonomy><![CDATA[nav_menu]]></wp:term_taxonomy>
+		<wp:term_slug><![CDATA[primary-menu]]></wp:term_slug>
+		<wp:term_name><![CDATA[Primary Menu]]></wp:term_name>
+	</wp:term>
+
+	<!-- ======================= PAGES ======================= -->
+
+	<item>
+		<title><![CDATA[Home]]></title>
+		<link>https://karthigeyann.github.io/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?page_id=10</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>10</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[home]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_wp_page_template]]></wp:meta_key>
+			<wp:meta_value><![CDATA[front-page.php]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<item>
+		<title><![CDATA[About]]></title>
+		<link>https://karthigeyann.github.io/about/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?page_id=11</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<div class="about-content">
+  <h1>About Me</h1>
+
+  <div class="about-text">
+    <p>I'm Karthi — an engineer, developer, and scientific thinker based in the United States. I build software that sits at the intersection of elegant engineering and rigorous scientific thinking.</p>
+
+    <p>With a deep passion for clean architecture, machine learning, and open-source development, I strive to create solutions that are not only functional but beautiful in their design. I believe the best software emerges when we apply the scientific method to engineering challenges.</p>
+
+    <p>When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or diving into research papers on AI and systems design.</p>
+  </div>
+
+  <div class="skills">
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">JavaScript</span>
+    <span class="skill-tag">TypeScript</span>
+    <span class="skill-tag">React</span>
+    <span class="skill-tag">Node.js</span>
+    <span class="skill-tag">Machine Learning</span>
+    <span class="skill-tag">Docker</span>
+    <span class="skill-tag">Kubernetes</span>
+    <span class="skill-tag">Go</span>
+    <span class="skill-tag">Rust</span>
+    <span class="skill-tag">System Design</span>
+    <span class="skill-tag">Computational Drug discovery</span>
+  </div>
+</div>
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>11</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[about]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>4</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<item>
+		<title><![CDATA[Blog]]></title>
+		<link>https://karthigeyann.github.io/blog/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?page_id=12</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>12</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[blog]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>3</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<item>
+		<title><![CDATA[Contact]]></title>
+		<link>https://karthigeyann.github.io/contact/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?page_id=13</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<div class="page-content">
+  <h1>Get In Touch</h1>
+  <p style="text-align: center; margin-bottom: 2.5rem;">Have a question, project idea, or just want to say hi? Drop me a message!</p>
+
+  <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Message &rarr;</button>
+  </form>
+</div>
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>13</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[contact]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>5</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ======================= NAV MENU ITEMS ======================= -->
+
+	<item>
+		<title><![CDATA[Home]]></title>
+		<link>https://karthigeyann.github.io/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?p=101</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>101</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[home-menu]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="primary-menu"><![CDATA[Primary Menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+			<wp:meta_value><![CDATA[custom]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+			<wp:meta_value><![CDATA[10]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<item>
+		<title><![CDATA[Projects]]></title>
+		<link>https://karthigeyann.github.io/projects/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?p=102</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>102</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[projects-menu]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>2</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="primary-menu"><![CDATA[Primary Menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+			<wp:meta_value><![CDATA[post_type_archive]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+			<wp:meta_value><![CDATA[project]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<item>
+		<title><![CDATA[Blog]]></title>
+		<link>https://karthigeyann.github.io/blog/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?p=103</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>103</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[blog-menu]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>3</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="primary-menu"><![CDATA[Primary Menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+			<wp:meta_value><![CDATA[12]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<item>
+		<title><![CDATA[About]]></title>
+		<link>https://karthigeyann.github.io/about/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?p=104</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>104</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[about-menu]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>4</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="primary-menu"><![CDATA[Primary Menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+			<wp:meta_value><![CDATA[11]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<item>
+		<title><![CDATA[Contact]]></title>
+		<link>https://karthigeyann.github.io/contact/</link>
+		<pubDate>Thu, 01 Jul 2026 00:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/?p=105</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>105</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-01 00:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[contact-menu]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>5</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="nav_menu" nicename="primary-menu"><![CDATA[Primary Menu]]></category>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+			<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+			<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+			<wp:meta_value><![CDATA[13]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+			<wp:meta_value><![CDATA[page]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+
+	<!-- ======================= BLOG POSTS ======================= -->
+
+	<item>
+		<title><![CDATA[Welcome to My Blog]]></title>
+		<link>https://karthigeyann.github.io/blog/welcome-to-my-blog/</link>
+		<pubDate>Fri, 17 Jul 2026 10:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/blog/welcome-to-my-blog/</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<p>Welcome to my personal blog! This is where I'll be sharing my thoughts on software engineering, machine learning, system design, and everything in between.</p>
+
+<h2>What to Expect</h2>
+
+<p>I plan to write about:</p>
+
+<ul>
+<li><strong>Software Architecture</strong> — Clean code, design patterns, and system design</li>
+<li><strong>Machine Learning</strong> — Models, training pipelines, and production ML</li>
+<li><strong>DevOps &amp; Infrastructure</strong> — Docker, Kubernetes, CI/CD, and cloud</li>
+<li><strong>Open Source</strong> — Contributions, side projects, and lessons learned</li>
+</ul>
+
+<p>Stay tuned for more content coming soon!</p>
+
+<hr />
+
+<p><em>"The best way to predict the future is to invent it."</em> — Alan Kay</p>
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-17 10:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-17 10:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[welcome-to-my-blog]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
+	</item>
+
+	<item>
+		<title><![CDATA[Predicting Solubility with Machine Learning]]></title>
+		<link>https://karthigeyann.github.io/blog/predicting-solubility-with-machine-learning/</link>
+		<pubDate>Thu, 30 Jul 2026 10:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[karthi]]></dc:creator>
+		<guid isPermaLink="false">https://karthigeyann.github.io/blog/predicting-solubility-with-machine-learning/</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<p>In this post I'll walk through my ML Model Explorer project — a solubility prediction tool built with RDKit and machine learning.</p>
+
+<h2>Why Solubility?</h2>
+
+<p>Aqueous solubility is one of the most important physicochemical properties in drug discovery. It affects absorption, distribution, and formulation. Being able to predict it from molecular structure alone can save a lot of time and cost in early-stage screening.</p>
+
+<h2>Approach</h2>
+
+<ol>
+<li><strong>Data</strong> — A dataset of molecules labeled with experimental solubility values</li>
+<li><strong>Features</strong> — Computed RDKit fingerprints and molecular descriptors</li>
+<li><strong>Model</strong> — Trained regression models (Random Forest, Gradient Boosting) to map structure to solubility</li>
+<li><strong>Evaluation</strong> — Root mean squared error and R² on a held-out test set</li>
+</ol>
+
+<h2>Demo</h2>
+
+<p>The interactive demo lets you draw or paste a SMILES string, compute descriptors on the fly, and get an instant solubility prediction.</p>
+
+<p>Check out the live demo and the source code from the <a href="/projects/">Projects page</a>.</p>
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>2</wp:post_id>
+		<wp:post_date><![CDATA[2026-07-30 10:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-07-30 10:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[open]]></wp:ping_status>
+		<wp:post_name><![CDATA[predicting-solubility-with-machine-learning]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
+	</item>
+
+</channel>
+</rss>
